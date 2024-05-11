@@ -3,6 +3,7 @@ package Entities;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import Main.CollisionManager;
 import Main.GamePanel;
 import myEngine.Image;
 import myEngine.KeyListener;
@@ -20,7 +21,7 @@ public class Player extends Entity {
         speed = playerSpeed;
         xPosition = gp.screenWidth / 2;
         yPosition = gp.screenHeight / 2;
-        hitBox = new Rectangle(xPosition, yPosition, 32, 32); // Adjust hitbox size as needed
+        hitBox = new Rectangle(8, 15, 30, 25); // Adjust hitbox size as needed
     }
 
     public void update(KeyListener key) {
@@ -41,11 +42,17 @@ public class Player extends Entity {
                 image = new Image().getImage("/Entities/assets/player/bob_right.png");
                 direction = "right";
             }
+            
+            collision = false;
+            gp.collisionManager.checkTile(this);
+            
             // Check tile collision. If false, player can move.
             if (!collision) {
                 switch (direction) {
                     case "up":
+                    	if(hitBox.y > 0) {
                         yPosition -= speed;
+                    	}
                         break;
                     case "down":
                         yPosition += speed;
@@ -58,9 +65,7 @@ public class Player extends Entity {
                         break;
                 }
                 // Update hitbox position based on player position
-               // hitBox.setLocation(xPosition, yPosition);
             }
-            hitBox.setLocation(xPosition, yPosition);
         }
     }
 

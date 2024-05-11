@@ -28,7 +28,7 @@ private BufferedImage image;
 
 public TileRendering tile = new TileRendering(this);
 public Player player = new Player("Bob",3,this);
-
+public CollisionManager collisionManager = new CollisionManager(this);
 
 
  final int tileSize = originalTileSize*scale;
@@ -76,7 +76,7 @@ public void startGameThread() {
 }
 
 public void update() {
-	player.update(key);
+	player.update(key);	
 	
 }
 

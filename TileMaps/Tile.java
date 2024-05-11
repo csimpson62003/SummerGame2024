@@ -10,7 +10,7 @@ public class Tile {
 	public String tileName;
 	public boolean isPassible;
 	public int key;
-	
+	public int tileRow, tileColumn;
 	public Tile(BufferedImage tileImage, String tileName, boolean isPassable, int key) {
 		this.tileImage = tileImage;
 		this.tileName = tileName;
@@ -22,4 +22,5 @@ public class Tile {
 public BufferedImage getTile() {
  return tileImage;
 }
+
 }

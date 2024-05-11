@@ -33,7 +33,6 @@ private void readMapFile(){
 		for(int c=0; c < column; c++) {
 			int index =  scan.nextInt();
 			Tile tile = tg.getTile(index);
-			System.out.println(tile.key);
 			mapArray[c][r] = tile;
 		}
 	}
@@ -44,7 +43,6 @@ private void readMapFile(){
 	for (int r =0; r < row; r++) {
 		for(int c=0; c < column; c++) {
 		}
-		System.out.println("");
 }
 }
 
@@ -54,13 +52,11 @@ public void render(Graphics2D graphics, GamePanel gp) {
 	for (int r =0; r < row; r++) {
 		for(int c=0; c < column; c++) {
 			Tile tile = mapArray[c][r];
+			
 			graphics.drawImage(tile.tileImage, x, y, gp.getTileSize(),gp.getTileSize(),null);
 			if(!tile.isPassible) {
-				 // Create a Rectangle2D.Double object (x, y, width, height)
-		        Rectangle2D.Double collidableBlock = new Rectangle2D.Double(x, y,gp.getTileSize(),gp.getTileSize());
-		        
-		        // Fill the rectangle with the specified color
-		        graphics.fill(collidableBlock);
+				//System.out.println("Water Tile X: "+tile.tileX +", Y: "+tile.tileY);
+		        graphics.drawRect(x, y, gp.getTileSize(), gp.getTileSize());
 			}
 			x += tileSize;
 		}
@@ -70,7 +66,14 @@ public void render(Graphics2D graphics, GamePanel gp) {
 }
 
 public Tile getTile(int column, int row) {
-	return mapArray[column/tileSize][row/tileSize];
+	Tile temp = mapArray[column][row];
+	temp.tileColumn = column;
+	temp.tileRow = row;
+//	
+//	System.out.println("TileColumn: "+temp.tileColumn);
+//	System.out.println("TileRow: "+temp.tileRow);
+	return temp;
+
 }
 
 public TileRendering(GamePanel panel) {

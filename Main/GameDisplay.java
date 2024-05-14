@@ -1,5 +1,7 @@
 package Main;
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -22,8 +24,9 @@ public class GameDisplay{
 		JFrame window = new JFrame();
 		window.setTitle("SummerGame2024");
 		window.setSize(new Dimension(1280, 720));
-		window.setResizable(true); 
+		window.setResizable(false); 
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		//Getting the window icon.
 
 		GamePanel panel = new GamePanel();
@@ -31,5 +34,6 @@ public class GameDisplay{
 		window.pack();
 		window.setVisible(true);
 		panel.startGameThread();
-	}
+
+    }
 }
